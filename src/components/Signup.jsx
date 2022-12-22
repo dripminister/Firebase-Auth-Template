@@ -2,8 +2,6 @@ import { serverTimestamp } from "firebase/firestore"
 import React, { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import { collection, addDoc } from "firebase/firestore"
-import { db } from "../firebase"
 
 export default function Signup() {
 	const { signup } = useAuth()
@@ -26,14 +24,6 @@ export default function Signup() {
 			setError("")
 			setLoading(true)
 			await signup(emailRef.current.value, passwordRef.current.value)
-			const collectionRef = collection(db, emailRef.current.value)
-			await addDoc(collectionRef, {
-				from: "admin@admin.com",
-				to: emailRef.current.value,
-				title: "Welcome",
-				message: `Welcome ${emailRef.current.value}`,
-				timestamp: serverTimestamp(),
-			})
 			navigate("/")
 		} catch {
 			setError("Failed to sign up!")

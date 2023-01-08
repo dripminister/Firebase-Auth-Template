@@ -21,18 +21,13 @@ export default function Dashboard() {
 		<>
 			<div>
 				<div>
-					<h2 className="text-center mb-4">Profile</h2>
-					{error && <p variant="danger">{error}</p>}
+					<h2>Profile</h2>
+					{error && <p>{error}</p>}
 					<strong>Email: </strong> {currentUser.email}
 				</div>
 			</div>
-			<div className="w-100 text-center mt-2">
-				<button
-					variant="link"
-					onClick={handleLogout}
-				>
-					Log out
-				</button>
+			<div>
+				<button onClick={handleLogout}>Log out</button>
 			</div>
 		</>
 	)
